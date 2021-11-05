@@ -13,6 +13,10 @@ public class CodeCalculator {
         }
         return 0;
     }
+    
+    public String getResultAsString(String code) {
+        return "";
+    }
 
     private boolean isCodeOk(String code) {
         if (code==null) return false;
