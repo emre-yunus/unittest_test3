@@ -13,7 +13,7 @@ public class CodeCalculator {
         }
         return 0;
     }
-    
+
     public String getResultAsString(String code) {
         return "";
     }
