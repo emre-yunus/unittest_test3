@@ -55,7 +55,7 @@ public class CodeCalculator {
         private final Integer[] numbers;
 
         public CodeParts(String operation, String numbers) {
-            if (operation.equals("")) {
+            if (operation.length()<2) {
                 this.operation = "+";
             } else {
                 this.operation = operation.substring(1);
