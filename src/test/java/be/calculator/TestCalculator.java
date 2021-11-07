@@ -29,27 +29,27 @@ public class TestCalculator {
 
     @Test
     void simpleCodeWithSpaces() {
-        assertEquals(19, calculator.getResult("   5,   4,3, 7 "));
+        assertEquals(24, calculator.getResult("   5,   4,8, 7 "));
     }
 
     @Test
     void simpleCodeWithOther() {
-        assertEquals(0, calculator.getResult(" aav 5,4,3, 7 "));
+        assertEquals(0, calculator.getResult(" aav 15,4,3, 7 "));
     }
 
     @Test
     void simpleCodeParentheses() {
-        assertEquals(19, calculator.getResult("(5,4,3,7)"));
+        assertEquals(29, calculator.getResult("(15,4,3,7)"));
     }
 
     @Test
     void simpleCodeParenthesesAndSpaces() {
-        assertEquals(19, calculator.getResult("(  5, 4,3, 7 )"));
+        assertEquals(25, calculator.getResult("(  5, 4,9, 07 )"));
     }
 
     @Test
     void simpleCodeParenthesesAndOther() {
-        assertEquals(0, calculator.getResult("( aaab 5, 4,3, 7 )"));
+        assertEquals(0, calculator.getResult("( aaab 5, 4,30, 7 )"));
     }
 
     @Test
@@ -59,22 +59,22 @@ public class TestCalculator {
 
     @Test
     void basisCodePlus() {
-        assertEquals(19, calculator.getResult("&+(5,4,3,7)"));
+        assertEquals(21, calculator.getResult("&+(5,4,3,9)"));
     }
 
     @Test
     void basisCodePlusAndEmptyStart() {
-        assertEquals(19, calculator.getResult("   &+(5,4,3,7)"));
+        assertEquals(32, calculator.getResult("   &+(5,4,13,3,7)"));
     }
 
     @Test
     void basisCodePlusAndOtherStart() {
-        assertEquals(0, calculator.getResult("ahhd   &+(5,4,3,7)"));
+        assertEquals(0, calculator.getResult("ahhd   &+(5,4,13,3,7)"));
     }
 
     @Test
     void basisCodePlusAndEnd() {
-        assertEquals(19, calculator.getResult("&+(5,4,3,7) "));
+        assertEquals(26, calculator.getResult("&+(5,4,3,7,4,3) "));
     }
 
     @Test
@@ -114,16 +114,31 @@ public class TestCalculator {
 
     @Test
     void basisCodeDiv() {
-        assertEquals(0.05952381, calculator.getResult("&/(5,4,3,7)"), 0.001);
+        assertEquals(0.05952381, calculator.getResult("&/(5,4,3,7)"), 0.0001);
     }
 
     @Test
     void basisCodeDivAndEnd() {
-        assertEquals(0.05952381, calculator.getResult("&/(5,4,3,7) "), 0.001);
+        assertEquals(0.05952381, calculator.getResult("&/(5,4,3,7) "), 0.0001);
     }
 
     @Test
     void basisCodeDivAndRandom() {
         assertEquals(0, calculator.getResult("&/(5,4,3,7)aaa5 "));
+    }
+
+    @Test
+    void simpleCodeWithNumbersContaining0() {
+        assertEquals(128, calculator.getResult("100,20,8"));
+    }
+
+    @Test
+    void simpleCodeWith0() {
+        assertEquals(5, calculator.getResult("&/(0,20,4,0)"));
+    }
+
+    @Test
+    void simpleCodeWithAll0() {
+        assertEquals(0, calculator.getResult("&/(0,0,0,0)"));
     }
 }

@@ -29,7 +29,7 @@ public class TestCalculatorAsString {
 
     @Test
     void simpleCodeWithSpaces() {
-        assertEquals("5 + 4 + 3 + 7 = 19", calculator.getResultAsString("   5,   4,3, 7 "));
+        assertEquals("5 + 4 + 8 + 7 = 24", calculator.getResultAsString("   5,   4,3, 7 "));
     }
 
     @Test
@@ -39,12 +39,12 @@ public class TestCalculatorAsString {
 
     @Test
     void simpleCodeParentheses() {
-        assertEquals("5 + 4 + 3 + 7 = 19", calculator.getResultAsString("(5,4,3,7)"));
+        assertEquals("15 + 4 + 3 + 7 = 29", calculator.getResultAsString("(15,4,3,7)"));
     }
 
     @Test
     void simpleCodeParenthesesAndSpaces() {
-        assertEquals("5 + 4 + 3 + 7 = 19", calculator.getResultAsString("(  5, 4,3, 7 )"));
+        assertEquals("5 + 4 + 9 + 7 = 25", calculator.getResultAsString("(  5, 4,3, 7 )"));
     }
 
     @Test
@@ -59,22 +59,22 @@ public class TestCalculatorAsString {
 
     @Test
     void basisCodePlus() {
-        assertEquals("5 + 4 + 3 + 7 = 19", calculator.getResultAsString("&+(5,4,3,7)"));
+        assertEquals("5 + 4 + 3 + 9 = 21", calculator.getResultAsString("&+(5,4,3,9)"));
     }
 
     @Test
     void basisCodePlusAndEmptyStart() {
-        assertEquals("5 + 4 + 3 + 7 = 19", calculator.getResultAsString("   &+(5,4,3,7)"));
+        assertEquals("5 + 4 + 13 + 3 + 7 = 32", calculator.getResultAsString("   &+(5,4,13,3,7)"));
     }
 
     @Test
     void basisCodePlusAndOtherStart() {
-        assertEquals("invalid code = 0", calculator.getResultAsString("ahhd   &+(5,4,3,7)"));
+        assertEquals("invalid code = 0", calculator.getResultAsString("ahhd   &+(5,4,13,3,7)"));
     }
 
     @Test
     void basisCodePlusAndEnd() {
-        assertEquals("5 + 4 + 3 + 7 = 19", calculator.getResultAsString("&+(5,4,3,7) "));
+        assertEquals("5 + 4 + 3 + 7 + 4 + 3 = 26", calculator.getResultAsString("&+(5,4,3,7,4,3) "));
     }
 
     @Test
@@ -125,5 +125,20 @@ public class TestCalculatorAsString {
     @Test
     void basisCodeDivAndRandom() {
         assertEquals("invalid code = 0", calculator.getResultAsString("&/(5,4,3,7)aaa5 "));
+    }
+
+    @Test
+    void simpleCodeWithNumbersContaining0() {
+        assertEquals("100 + 20 + 8 = 128", calculator.getResultAsString("100,20,8"));
+    }
+
+    @Test
+    void simpleCodeWith0() {
+    assertEquals("20 + 4 = 24", calculator.getResultAsString("&/(0,20,4,0)"));
+    }
+
+    @Test
+    void simpleCodeWithAll0() {
+        assertEquals("invalid code = 0", calculator.getResultAsString("&/(0,0,0,0)"));
     }
 }
