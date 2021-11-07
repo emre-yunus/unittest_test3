@@ -29,7 +29,7 @@ public class TestCalculatorAsString {
 
     @Test
     void simpleCodeWithSpaces() {
-        assertEquals("5 + 4 + 8 + 7 = 24", calculator.getResultAsString("   5,   4,3, 7 "));
+        assertEquals("5 + 4 + 8 + 7 = 24", calculator.getResultAsString("   5,   4,8, 7 "));
     }
 
     @Test
@@ -44,7 +44,7 @@ public class TestCalculatorAsString {
 
     @Test
     void simpleCodeParenthesesAndSpaces() {
-        assertEquals("5 + 4 + 9 + 7 = 25", calculator.getResultAsString("(  5, 4,3, 7 )"));
+        assertEquals("5 + 4 + 9 + 7 = 25", calculator.getResultAsString("(  5, 4,9, 7 )"));
     }
 
     @Test
@@ -134,11 +134,11 @@ public class TestCalculatorAsString {
 
     @Test
     void simpleCodeWith0() {
-    assertEquals("20 + 4 = 24", calculator.getResultAsString("&/(0,20,4,0)"));
+        assertEquals("20 / 4 = 5", calculator.getResultAsString("&/(0,20,4,0)"));
     }
 
     @Test
     void simpleCodeWithAll0() {
-        assertEquals("invalid code = 0", calculator.getResultAsString("&/(0,0,0,0)"));
+        assertEquals("empty code = 0", calculator.getResultAsString("&/(0,0,0,0)"));
     }
 }
