@@ -78,6 +78,16 @@ public class TestCalculator {
     }
 
     @Test
+    void basisCodeOther() {
+        assertEquals(0, calculator.getResult("&!(5,4,3,7,4,3)"));
+    }
+
+    @Test
+    void basisCodeEmpty() {
+        assertEquals(26, calculator.getResult("&(5,4,3,7,4,3) "));
+    }
+
+    @Test
     void basisCodePlusAndRandom() {
         assertEquals(0, calculator.getResult("&+(5,4,3,7)aaa5 "));
     }

@@ -78,6 +78,16 @@ public class TestCalculatorAsString {
     }
 
     @Test
+    void basisCodeOther() {
+        assertEquals("invalid code = 0", calculator.getResultAsString("&!(5,4,3,7,4,3)"));
+    }
+
+    @Test
+    void basisCodeEmpty() {
+        assertEquals("5 + 4 + 3 + 7 + 4 + 2 = 25", calculator.getResultAsString("&(5,4,3,7,4,2) "));
+    }
+
+    @Test
     void basisCodePlusAndRandom() {
         assertEquals("invalid code = 0", calculator.getResultAsString("&+(5,4,3,7)aaa5 "));
     }
