@@ -22,10 +22,11 @@ public class CodeCalculator {
         if (code==null) return false;
         code = code.trim();
         if (code.equals("")) return false;
-        Pattern p = Pattern.compile("(?<operation>^\\&?[\\+\\-\\*/]?)\\(?(?<numbers>[1-9, ]*)\\)?(?<endcharacters>.*)");
+        Pattern p = Pattern.compile("(?<operation>^\\&?[\\+\\-\\*/]?)\\(?(?<numbers>[0-9, ]*)\\)?(?<endcharacters>.*)");
         Matcher m = p.matcher(code);
         if (!m.find() || !m.group("endcharacters").equals("") || m.group("numbers").equals("")) return false;
         parts = new CodeParts(m.group("operation"), m.group("numbers"));
+        if (parts.numbers.length==0) return false;
         return true;
     }
 
@@ -59,7 +60,7 @@ public class CodeCalculator {
             } else {
                 this.operation = operation.substring(1);
             }
-            this.numbers = Arrays.stream(numbers.split(",")).map(s -> Integer.parseInt(s.trim())).toArray(Integer[]::new);
+            this.numbers = Arrays.stream(numbers.split(",")).map(s -> Integer.parseInt(s.trim())).filter(i -> i!=0).toArray(Integer[]::new);
         }
     }
 }
